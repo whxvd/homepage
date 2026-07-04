@@ -1,0 +1,19 @@
+name: Test domain
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dig:
+    runs-on: ubuntu-latest
+    steps:
+      - run: dig whxvd.name +noall +answer -t ANY
+      - run: dig whxvd.name +noall +answer -t A
+      - run: dig whxvd.name +noall +answer -t AAAA
+      - run: dig www.whxvd.name +noall +answer -t ANY
+      - run: dig www.whxvd.name +noall +answer -t A
+      - run: dig www.whxvd.name +noall +answer -t AAAA
+      - run: curl -I http://whxvd.name
+      - run: curl -I https://whxvd.name
+      - run: curl -I http://www.whxvd.name
+      - run: curl -I https://www.whxvd.name
